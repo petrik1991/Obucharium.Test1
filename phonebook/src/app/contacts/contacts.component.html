@@ -1,0 +1,12 @@
+<table class="table table-striped">
+  <tr *ngFor="let person of people" (click)="onSelect(person)" [class.active]="person===selectedPerson">
+    <td>
+        {{person.name}}
+    </td>
+    <td>
+        {{person.number}}
+    </td>
+  </tr>
+</table>
+
+<app-person-detail [person]=selectedPerson></app-person-detail>
