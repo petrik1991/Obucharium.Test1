@@ -9,9 +9,9 @@ import { Person } from '../person';
 export class ContactsComponent implements OnInit {
 
   people: Person[] = [
-    {name: 'Ilya', number: '111111'},
-    {name: 'Ivan', number: '222222'},
-    {name: 'Dima', number: '333333'}
+    {name: 'Ilya', surname: "Petrov", number: '111111'},
+    {name: 'Ivan', surname: "Sidorov", number: '222222'},
+    {name: 'Dima', surname: "Ivanov", number: '333333'}
   ];
 
   selectedPerson: Person;
@@ -19,6 +19,10 @@ export class ContactsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onDelete(person: Person){
+    this.people.splice(this.people.indexOf(person), 1);
   }
 
   onSelect(person: Person){

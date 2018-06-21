@@ -1,10 +1,18 @@
+<app-add-contact></app-add-contact>
+
 <table class="table table-striped">
   <tr *ngFor="let person of people" (click)="onSelect(person)" [class.active]="person===selectedPerson">
     <td>
         {{person.name}}
     </td>
     <td>
+        {{person.surname}}
+    </td>
+    <td>
         {{person.number}}
+    </td>
+    <td>
+      <button class="btn btn-default" (click)="onDelete(person)">Удалить</button>
     </td>
   </tr>
 </table>
