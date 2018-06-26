@@ -1,0 +1,31 @@
+<h2>Edit</h2>
+
+<div class="form-horizontal">
+  <h4>Contacts</h4>
+  <hr>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="Name">Name:</label>
+    <div class="col-md-10">
+        <input class="form-control text-box single-line" [(ngModel)]=person.name id="Name" name="Name" placeholder="name" type="text">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label  class="control-label col-md-2" for="Surname">Surname:</label>
+    <div class="col-md-10">
+      <input class="form-control text-box single-line" [(ngModel)]=person.surname id="Surname" name="Surname" placeholder="surname" type="text">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label  class="control-label col-md-2" for="Number">Number:</label>
+    <div class="col-md-10">
+      <input class="form-control text-box single-line" [(ngModel)]=person.number id="Number" name="Number" placeholder="number" type="text">
+    </div>
+  </div>
+    
+</div>
+<div>
+    <a href="javascript:void(0)" (click)="goBack()">Back to Contacts</a>
+</div>
