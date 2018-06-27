@@ -7,13 +7,15 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { PersonDetailComponent } from './person-detail/person-detail.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactsComponent,
     PersonDetailComponent,
-    AddContactComponent
+    AddContactComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

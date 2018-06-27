@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactService } from '../contact.service';
 import { Person } from "../person";
+import { Location } from "@angular/common";
 
 @Component({
   selector: 'app-add-contact',
@@ -14,13 +15,18 @@ export class AddContactComponent implements OnInit {
   number: string;
   person: Person;
 
-  constructor(private contactservice: ContactService) { }
+  constructor(private contactservice: ContactService, private location: Location) { }
 
   ngOnInit() {
   }
 
   onAddPerson(name: string, surname: string, number: string){
-    this.contactservice.getContacts().push({id: this.contactservice.getContacts().length, name: name, surname: surname, number: number});
+    this.contactservice.addContact(name, surname, number);
+    this.goBack();
+  }
+
+  goBack(){
+    this.location.back();
   }
 
 }
