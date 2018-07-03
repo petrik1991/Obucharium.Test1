@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Contacts } from './fake-contacts';
 import { Person } from './person';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class ContactService {
 
-  contactsUrl = "http://localhost:57628/api/Contacts";
+  contactsUrl = 'http://localhost:57628/api/Contacts';
 
   constructor(private http: HttpClient) {}
 
@@ -46,7 +46,6 @@ export class ContactService {
 
     let contact: Person = {id: id, name: name, number: number};
     this.http.post(`${this.contactsUrl}`, contact);
-    //Contacts.push({id: id, name: name, number: number});
   }
 
   generateId(): number{

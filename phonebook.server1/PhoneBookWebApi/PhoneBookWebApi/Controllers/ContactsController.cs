@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using PhoneBookWebApi.Models;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
-using PhoneBookWebApi.Models;
 
 namespace PhoneBookWebApi.Controllers
 {
-    [EnableCors(origins: "http://localhost:4200", headers:"*", methods:"*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ContactsController : ApiController
     {
         private PhonebookDb db = new PhonebookDb();
