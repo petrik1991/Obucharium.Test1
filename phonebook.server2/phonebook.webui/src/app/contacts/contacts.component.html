@@ -1,0 +1,35 @@
+<button style="margin-top: 15px" class="btn btn-default" routerLink="/addContact">Add Contact</button>
+
+<h2>Contacts</h2>
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Number</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let contact of people | async">
+        <th scope="row">
+          {{contact.id}}
+        </th>
+        <td>
+            {{contact.name}}
+        </td>
+        <td>
+          {{contact.age}}
+        </td>
+        <td>
+            {{contact.number}}
+        </td>
+        <td>
+          <a routerLink="/detail/{{contact.id}}">Edit</a> |
+          <a (click)="onDelete(contact)">Delete</a>
+        </td>
+    </tr>
+  </tbody>
+</table>

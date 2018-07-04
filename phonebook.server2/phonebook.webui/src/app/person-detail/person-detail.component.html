@@ -1,0 +1,56 @@
+<h2>Edit</h2>
+<div class='form-horizontal' *ngIf = "contact">
+
+      <div class="validation-summary-errors text-danger" *ngIf="errors.length">
+        <ul *ngFor="let error of errors">
+          <li>{{error}}</li>
+        </ul>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-md-2" for="Name">Name</label>
+        <div class="col-md-10">
+            <input #nameBox="ngModel" required class="form-control text-box single-line inData" id="name" name="Name" [(ngModel)] = contact.name  placeholder = "name" type = "text">
+            <span class="text-danger field-validation-error" [hidden]="nameBox.valid">
+              <span for="Name" class="">
+                The Name field required
+              </span>
+            </span>    
+        </div> 
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-md-2" for="Age">Age</label>
+        <div class="col-md-10">
+          <input #ageBox="ngModel" required class="form-control text-box single-line inData" id="age" name="Age" [(ngModel)] = contact.age placeholder = "age" type = "text">
+          <span class="text-danger field-validation-error" [hidden]="ageBox.valid">
+              <span for="Age" class="">
+                The Age field required
+              </span>
+            </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-md-2" for="Number">Number</label>
+        <div class="col-md-10">
+          <input #numberBox="ngModel" required class="form-control text-box single-line inData" id="number" name="Number" [(ngModel)] = contact.number placeholder = "number" type = "text">
+          <span class="text-danger field-validation-error" [hidden]="numberBox.valid">
+              <span for="Number" class="">
+                The Number field required
+              </span>
+          </span>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="col-md-10 col-md-offset-2">
+            <button (click)="save()" [disabled]="nameBox.invalid || numberBox.invalid || ageBox.invalid" class="btn btn-default">Save</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-10">
+          <a href="javascript:void(0)" (click)="goBack()">Back to contact</a>
+        </div>
+      </div>
