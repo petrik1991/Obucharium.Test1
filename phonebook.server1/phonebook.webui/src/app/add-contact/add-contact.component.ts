@@ -10,18 +10,16 @@ import { Location } from "@angular/common";
 })
 export class AddContactComponent implements OnInit {
 
-  name: string;
-  number: string;
-  person: Person;
+  contact: Person;
 
   constructor(private contactservice: ContactService, private location: Location) { }
 
   ngOnInit() {
+    this.contact = new Person();
   }
 
-  onAddPerson(name: string, number: string){
-    //this.contactservice.addContact(name, number);
-    this.goBack();
+  onAddPerson(name: string, age: string, number: string){
+    this.contactservice.addContact(this.contact).subscribe(() => this.goBack());
   }
 
   goBack(){

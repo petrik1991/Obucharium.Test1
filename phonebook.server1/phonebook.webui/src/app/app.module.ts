@@ -9,6 +9,8 @@ import { AddContactComponent } from './add-contact/add-contact.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchComponent } from './search/search.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { HttpClientModule } from '@angular/common/http';
     ContactsComponent,
     PersonDetailComponent,
     AddContactComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SearchComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
 
 namespace PhoneBookWebApi.Models
 {
@@ -29,6 +26,7 @@ namespace PhoneBookWebApi.Models
                 context.Contacts.Add(new Contact
                 {
                     Name = name,
+                    Age = new Random().Next(10, 80).ToString(),
                     Phone = Math.Abs((int)name.GetHashCode()).ToString().Substring(0, 6).PadRight(6, '0')
                 });
             }

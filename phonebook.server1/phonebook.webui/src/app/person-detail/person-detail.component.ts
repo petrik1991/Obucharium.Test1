@@ -11,7 +11,8 @@ import { Location } from "@angular/common";
 })
 export class PersonDetailComponent implements OnInit {
 
-  person: Person;
+  contact: Person;
+  errors: string[] = [];
 
   constructor(private contactService: ContactService, private activetedRoute: ActivatedRoute, private location: Location) { }
 
@@ -21,7 +22,13 @@ export class PersonDetailComponent implements OnInit {
 
   loadContact(){
     const id = +this.activetedRoute.snapshot.paramMap.get('id');
-    this.contactService.getContact(id).subscribe(c => this.person = c);
+    this.contactService.getContact(id).subscribe(c => this.contact = c);
+  }
+  
+  save(){
+    debugger
+    this.contactService.updateContact(this.contact).subscribe(() => this.goBack(), 
+    errors => this.errors = errors.messages);
   }
 
   goBack(){

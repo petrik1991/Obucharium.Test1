@@ -114,5 +114,6 @@ D:\ObuchariumProject\phonebook.server1\PhoneBookWebApi\PhoneBookWebApi\obj\Debug
 D:\ObuchariumProject\phonebook.server1\PhoneBookWebApi\PhoneBookWebApi\obj\Debug\PhoneBookWebApi.dll
 D:\ObuchariumProject\phonebook.server1\PhoneBookWebApi\PhoneBookWebApi\obj\Debug\PhoneBookWebApi.pdb
 D:\ObuchariumProject\phonebook.server1\PhoneBookWebApi\PhoneBookWebApi\bin\roslyn\System.IO.FileSystem.Primitives.dll
-D:\ObuchariumProject\phonebook.server1\PhoneBookWebApi\PhoneBookWebApi\bin\roslyn\System.Collections.Immutable.dll
 D:\ObuchariumProject\phonebook.server1\PhoneBookWebApi\PhoneBookWebApi\bin\roslyn\System.IO.FileSystem.dll
+D:\ObuchariumProject\phonebook.server1\PhoneBookWebApi\PhoneBookWebApi\bin\roslyn\System.Collections.Immutable.dll
+D:\ObuchariumProject\phonebook.server1\PhoneBookWebApi\PhoneBookWebApi\obj\Debug\PhoneBookWebApi.csprojResolveAssemblyReference.cache

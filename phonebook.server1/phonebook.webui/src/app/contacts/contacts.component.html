@@ -6,25 +6,29 @@
     <tr>
       <th>#</th>
       <th>Name</th>
+      <th>Age</th>
       <th>Number</th>
       <th></th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let person of people">
+    <tr *ngFor="let contact of people">
         <th scope="row">
-          {{person.id}}
+          {{contact.id}}
         </th>
         <td>
-            {{person.name}}
+            {{contact.name}}
         </td>
         <td>
-            {{person.number}}
+          {{contact.age}}
         </td>
         <td>
-          <a routerLink="/detail/{{person.id}}">Edit</a> |
-          <a (click)="onDelete(person)">Delete</a>
+            {{contact.number}}
+        </td>
+        <td>
+          <a routerLink="/detail/{{contact.id}}">Edit</a> |
+          <a (click)="onDelete(contact)">Delete</a>
         </td>
     </tr>
   </tbody>
