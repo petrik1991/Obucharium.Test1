@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ContactsComponent } from './contacts/contacts.component';
@@ -11,6 +12,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './search/search.component';
 import { AboutComponent } from './about/about.component';
+import { PhonePipe } from './phone.pipe';
+import { ErrorDirective } from './error.directive';
 
 @NgModule({
   declarations: [
@@ -20,13 +23,16 @@ import { AboutComponent } from './about/about.component';
     AddContactComponent,
     PageNotFoundComponent,
     SearchComponent,
-    AboutComponent
+    AboutComponent,
+    PhonePipe,
+    ErrorDirective
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

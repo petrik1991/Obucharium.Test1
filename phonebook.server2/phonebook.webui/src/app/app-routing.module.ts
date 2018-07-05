@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: "detail/:id", component: PersonDetailComponent},
   {path: "addContact", component: AddContactComponent},
   {path: "about", component: AboutComponent},
-  {path: "404", component: PageNotFoundComponent},
+  {path: '404', component: PageNotFoundComponent},
   {path: "**", redirectTo: "/404", pathMatch: "full"}
 ]
 

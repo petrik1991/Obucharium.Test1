@@ -3,7 +3,7 @@ import { Person } from '../person';
 import { ContactService } from '../contact.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-contacts',
@@ -16,11 +16,17 @@ export class ContactsComponent implements OnInit {
 
   selectedPerson: Person;
 
+  isLoading: boolean = false;
+
   constructor(private contactService: ContactService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.people = this.activatedRoute.params
-    .pipe(switchMap(params => this.getContacts(params['term'])));
+    this.people = this.activatedRoute
+    .params
+    .pipe(
+      tap(() => this.isLoading = true),
+      switchMap(params => this.getContacts(params['term']).pipe(finalize(() => this.isLoading = false)))
+    );
   }
 
   getContacts(term: string): Observable<Person[]>{
