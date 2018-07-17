@@ -14,7 +14,6 @@ namespace PhoneBookWebApi.Controllers
     {
         private PhonebookDb db = new PhonebookDb();
 
-        // GET: api/Contacts
         public IQueryable<Contact> GetContacts(string term = null)
         {
             var query = db.Contacts;

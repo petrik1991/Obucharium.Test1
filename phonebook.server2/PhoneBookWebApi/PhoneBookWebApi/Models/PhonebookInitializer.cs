@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Linq;
 
 namespace PhoneBookWebApi.Models
 {
@@ -19,6 +20,11 @@ namespace PhoneBookWebApi.Models
             "Larry Ellison"
         };
 
+        public static string[] groups =
+        {
+            "Family", "Work", "Friends", "Study"
+        };
+
         protected override void Seed(PhonebookDb context)
         {
             foreach(var name in names)
@@ -30,6 +36,8 @@ namespace PhoneBookWebApi.Models
                     Phone = Math.Abs((int)name.GetHashCode()).ToString().Substring(0, 6).PadRight(6, '0')
                 });
             }
+
+            context.Groups.AddRange(groups.ToList().Select((g, inc) => new Group { Id = inc, Name = g }));
 
             base.Seed(context);
         }

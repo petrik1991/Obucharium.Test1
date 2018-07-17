@@ -231,7 +231,6 @@ D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\bin\ru\Sy
 D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\bin\ru\System.Web.WebPages.resources.dll
 D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\bin\ru\System.Web.WebPages.Deployment.resources.dll
 D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\bin\ru\System.Web.WebPages.Razor.resources.dll
-D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\obj\Debug\PhoneBookWebApi.csprojResolveAssemblyReference.cache
 D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\obj\Debug\PhoneBookWebApi.csproj.CoreCompileInputs.cache
 D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\obj\Debug\PhoneBookWebApi.csproj.CopyComplete
 D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\obj\Debug\PhoneBookWebApi.dll

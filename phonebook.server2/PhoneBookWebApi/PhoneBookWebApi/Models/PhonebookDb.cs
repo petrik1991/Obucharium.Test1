@@ -6,9 +6,11 @@ using System.Web;
 
 namespace PhoneBookWebApi.Models
 {
-    public class PhonebookDb: DbContext
+    public class PhonebookDb : DbContext
     {
         public DbSet<Contact> Contacts { get; set; }
+
+        public DbSet<Group> Groups { get; set; }
 
         static PhonebookDb()
         {

@@ -14,6 +14,7 @@ import { SearchComponent } from './search/search.component';
 import { AboutComponent } from './about/about.component';
 import { PhonePipe } from './phone.pipe';
 import { ErrorDirective } from './error.directive';
+import { GroupComponent } from './group/group.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ErrorDirective } from './error.directive';
     SearchComponent,
     AboutComponent,
     PhonePipe,
-    ErrorDirective
+    ErrorDirective,
+    GroupComponent
   ],
   imports: [
     BrowserModule,
