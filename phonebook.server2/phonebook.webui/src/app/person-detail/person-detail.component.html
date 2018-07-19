@@ -16,7 +16,7 @@
           type="text">
         <span class="text-danger field-validation-error" [hidden]="form.get('name').valid">
           <span for="Name" class="">
-            The Name field required
+            The 'Name' field is required
           </span>
         </span>
       </div>
@@ -28,7 +28,7 @@
         <input formControlName="age" required class="form-control text-box single-line" id="age" name="Age" placeholder="age" type="text">
         <span class="text-danger field-validation-error" [hidden]="form.get('age').valid">
           <span for="Age" class="">
-            The Age field required
+            The 'Age' field is required
           </span>
         </span>
       </div>
@@ -37,17 +37,28 @@
     <div class="form-group">
       <label [appError]="form.get('number').invalid" class="control-label col-md-2" for="Number">Number</label>
       <div class="col-md-10">
-        <input formControlName="number" required class="form-control text-box single-line" id="number" placeholder="Number" type="text">
+        <input formControlName="number" required class="form-control text-box single-line" id="number" name="Number" placeholder="Number" type="text">
         <span class="text-danger field-validation-error" [hidden]="!form.get('number').errors?.required">
           <span for="Number" class="">
-            The Number field required
+            The 'Number' field is required
           </span>
         </span>
         <span class="text-danger field-validation-error" [hidden]="!form.get('number').errors?.numberValidator">
           <span for="Number" class="">
-            The Number is invalid
+            The 'Number' field is invalid
           </span>
         </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-md-2" for="Group">Group</label>
+      <div class="col-md-10">
+
+        <select  class="form-control" formControlName="group" id="group">
+          <option *ngFor="let group of groups" [ngValue]="group" [selected]="group.id === selectedGroup.id">{{group.name}}</option>
+        </select>
+
       </div>
     </div>
 

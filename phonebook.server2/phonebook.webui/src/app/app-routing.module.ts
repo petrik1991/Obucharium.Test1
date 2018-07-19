@@ -6,12 +6,16 @@ import { AddContactComponent } from './add-contact/add-contact.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AboutComponent } from './about/about.component';
 import { GroupComponent } from './group/group.component';
+import { AddGroupComponent } from './add-group/add-group.component';
+import { GroupDetailComponent } from './group-detail/group-detail.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "/contacts", pathMatch: "full"},
   {path: 'contacts/:term', component: ContactsComponent},
   {path: "contacts", component: ContactsComponent},
   {path: "groups", component: GroupComponent},
+  {path: "detailGroup/:id", component: GroupDetailComponent},
+  {path: "addGroup", component: AddGroupComponent},
   {path: "detail/:id", component: PersonDetailComponent},
   {path: "addContact", component: AddContactComponent},
   {path: "about", component: AboutComponent},

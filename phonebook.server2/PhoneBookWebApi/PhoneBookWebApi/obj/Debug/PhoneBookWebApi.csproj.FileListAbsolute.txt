@@ -139,7 +139,6 @@ D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\bin\rosly
 D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\bin\roslyn\Microsoft.VisualBasic.Core.targets
 D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\bin\roslyn\Microsoft.Win32.Primitives.dll
 D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\bin\roslyn\System.AppContext.dll
-D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\bin\roslyn\System.Collections.Immutable.dll
 D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\bin\roslyn\System.Console.dll
 D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
 D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\bin\roslyn\System.Diagnostics.Process.dll
@@ -235,3 +234,5 @@ D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\obj\Debug
 D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\obj\Debug\PhoneBookWebApi.csproj.CopyComplete
 D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\obj\Debug\PhoneBookWebApi.dll
 D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\obj\Debug\PhoneBookWebApi.pdb
+D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\bin\roslyn\System.Collections.Immutable.dll
+D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\obj\Debug\PhoneBookWebApi.csprojAssemblyReference.cache

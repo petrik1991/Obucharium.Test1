@@ -9,6 +9,7 @@
       <th>Name</th>
       <th>Age</th>
       <th>Number</th>
+      <th>Group</th>
       <th></th>
       <th></th>
     </tr>
@@ -26,6 +27,9 @@
       </td>
       <td>
         {{contact.number | phone}}
+      </td>
+      <td>
+        <option *ngIf="contact.group">{{contact.group.name}}</option>
       </td>
       <td>
         <a routerLink="/detail/{{contact.id}}">Edit</a> |

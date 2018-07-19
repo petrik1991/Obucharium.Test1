@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Person } from './person';
-import { HttpClient, HttpHeaders  } from '@angular/common/http';
-import { Observable, throwError, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable} from 'rxjs';
 import { LoggerService } from './logger.service';
 import { tap, catchError } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import { ErrorHandlerService } from './error-handler.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,9 @@ export class ContactService {
 
   contactsUrl = 'http://localhost:57628/api/Contacts';
 
-  constructor(private http: HttpClient, private logger: LoggerService) {}
+  constructor(private http: HttpClient,
+     private logger: LoggerService,
+     private errorHandler: ErrorHandlerService) {}
 
   getContacts(): Observable<Person[]>{
     return this.http.get<Person[]>(this.contactsUrl)
@@ -27,8 +29,10 @@ export class ContactService {
 
   updateContact(contact: Person): Observable<any> {
     return this.http.put(`${this.contactsUrl}/${contact.id}`, contact)
-    .pipe(tap(() => this.logger.debug(`contact with id='${contact.id}' is updated`)),
-    catchError(this.handlerUpdateError()));
+    .pipe(
+      tap(
+        () => this.logger.debug(`contact with id='${contact.id}' is updated`)),
+        catchError(this.errorHandler.handlerUpdateError()));
   }
 
   deleteContact(contact: Person): Observable<any>{
@@ -40,33 +44,6 @@ export class ContactService {
     contact.id;
     return this.http.post(`${this.contactsUrl}`, contact)
     .pipe(tap(() => this.logger.debug(`new contact added`)));
-  }
-
-  private handleError<T>(action: string = "action", result?: T){
-    return (error: any) => {
-      this.logger.debug(action);
-      return of(result);
-    }
-  }
-
-  handlerUpdateError(){
-    return (error: any) => {
-      this.logger.debug(error.message);
-
-      let messages: string[] = [];
-      if(error.error.ModelState){
-        for(let field in error.error.ModelState)        {
-          messages = messages.concat(error.error.ModelState[field]);
-        }
-      }
-      else{
-        messages.push(error.message);
-      }
-
-      return throwError({
-        messages: messages
-      })
-    }
   }
 
   searchcontacts(term: string){

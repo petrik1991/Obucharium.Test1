@@ -15,6 +15,8 @@ import { AboutComponent } from './about/about.component';
 import { PhonePipe } from './phone.pipe';
 import { ErrorDirective } from './error.directive';
 import { GroupComponent } from './group/group.component';
+import { AddGroupComponent } from './add-group/add-group.component';
+import { GroupDetailComponent } from './group-detail/group-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { GroupComponent } from './group/group.component';
     AboutComponent,
     PhonePipe,
     ErrorDirective,
-    GroupComponent
+    GroupComponent,
+    AddGroupComponent,
+    GroupDetailComponent,
   ],
   imports: [
     BrowserModule,

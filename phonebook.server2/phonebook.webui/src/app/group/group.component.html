@@ -19,7 +19,8 @@
         {{group.name | titlecase}}
       </td>
       <td>
-        <a routerLink="/detail/{{group.id}}">Edit</a> |
+        <a routerLink="/detailGroup/{{group.id}}">Edit</a> |
+        <a (click)="onDelete(group.id)">Delete</a>
       </td>
     </tr>
   </tbody>

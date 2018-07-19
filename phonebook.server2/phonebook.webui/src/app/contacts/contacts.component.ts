@@ -25,7 +25,8 @@ export class ContactsComponent implements OnInit {
     .params
     .pipe(
       tap(() => this.isLoading = true),
-      switchMap(params => this.getContacts(params['term']).pipe(finalize(() => this.isLoading = false)))
+      switchMap(params => this.getContacts(params['term'])
+      .pipe(finalize(() => this.isLoading = false)))
     );
   }
 
