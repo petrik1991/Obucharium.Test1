@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Person } from '../person';
+import { GroupService } from '../group.service';
 import { ContactService } from '../contact.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { switchMap, tap, finalize } from 'rxjs/operators';
+import { Observable, forkJoin } from 'rxjs';
+import { switchMap, tap, finalize, map } from 'rxjs/operators';
+import { PersonWrapper } from '../personWrapper';
+import { Group } from '../group';
 
 @Component({
   selector: 'app-contacts',
@@ -12,13 +15,13 @@ import { switchMap, tap, finalize } from 'rxjs/operators';
 })
 export class ContactsComponent implements OnInit {
 
-  people: Observable<Person[]>;
-
-  selectedPerson: Person;
-
+  people: Observable<PersonWrapper[]>;
+  selectedPerson: PersonWrapper;
   isLoading: boolean = false;
 
-  constructor(private contactService: ContactService, private activatedRoute: ActivatedRoute) { }
+  constructor(private contactService: ContactService,
+    private activatedRoute: ActivatedRoute,
+    private groupService: GroupService) { }
 
   ngOnInit() {
     this.people = this.activatedRoute
@@ -30,21 +33,47 @@ export class ContactsComponent implements OnInit {
     );
   }
 
-  getContacts(term: string): Observable<Person[]>{
+  getContacts(term: string): Observable<PersonWrapper[]>{
+    let gettedContacts: Observable<Person[]>;
+
     if(term){
-      return this.contactService.searchcontacts(term);
+      gettedContacts = this.contactService.searchcontacts(term);
     }else{
-      return this.contactService.getContacts();
+      gettedContacts = this.contactService.getContacts();
     }
-    
+
+    return forkJoin(gettedContacts,
+    this.groupService.getGroups()).pipe(
+      map(([contacts, groups])=>{
+        let wrappedContacts: PersonWrapper[] = [];
+        contacts.forEach(c => {
+          if(c.groupId != null){
+            let index: number = groups.findIndex(g => g.id == c.groupId);
+            wrappedContacts.push(PersonWrapper.createPersonWrap(c, index > -1 ? groups[index].name : ""));
+          }else{
+            wrappedContacts.push(PersonWrapper.createPersonWrap(c, ""));
+          }
+        });
+        return wrappedContacts; 
+      })
+    );
   }
 
-  onDelete(contact: Person){
-    this.contactService.deleteContact(contact);
+  onDelete(contact: PersonWrapper){
+    this.contactService.deleteContact(contact.id).
+    subscribe(() => {
+      this.people = this.people.pipe(
+        tap(people => {
+          const index = people.indexOf(contact);
+          if (index > -1) {
+            people.splice(index, 1);
+          }
+        })
+      );
+    });
   }
 
-  onSelect(contact: Person){
+  onSelect(contact: PersonWrapper){
     this.selectedPerson = contact;
   }
-
 }

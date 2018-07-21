@@ -25,7 +25,7 @@ namespace PhoneBookWebApi.Models
         [JsonProperty("number")]
         public string Phone { get; set; }
 
-        [JsonProperty("group")]
-        public Group Group { get; set; }
+        [JsonProperty("groupId")]
+        public int? GroupId { get; set; }
     }
 }

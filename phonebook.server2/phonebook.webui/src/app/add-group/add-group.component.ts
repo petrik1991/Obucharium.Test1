@@ -25,7 +25,7 @@ export class AddGroupComponent implements OnInit {
 
   ngOnInit() {
     this.groupService.getGroups().subscribe(groups => {
-      this.setGroup( Math.max.apply(null, groups.map(function(p) { return p.id; })) + 1);
+      this.setGroup( Math.max.apply(null, groups.map(g => g.id)) + 1);
     });
   }
 

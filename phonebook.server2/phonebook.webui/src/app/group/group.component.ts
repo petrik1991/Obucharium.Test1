@@ -38,21 +38,20 @@ export class GroupComponent implements OnInit {
     this.contactService.getContacts().pipe(
       tap(contacts => {
         contacts.forEach(c => {
-          if (c.id === id) {
-            this.contactService.updateContact(c).subscribe();
+          if (c.groupId === id) {
+            c.groupId = null;
+            this.contactService.updateContact(c);
           }
         });
       })
-    ).subscribe();
+    );
 
-
-    this.groupService.deleteGroup(id).subscribe(dg => {
+    this.groupService.deleteGroup(id).subscribe(() => {
       this.groups = this.groups.pipe(
-        tap(gs => {
-          const x = gs.find(g => g.id === (<Group>dg).id);
-          const index = gs.indexOf(x);
+        tap(groups => {
+          const index = groups.findIndex(g => g.id == id);
           if (index > -1) {
-            gs.splice(index, 1);
+            groups.splice(index, 1);
           }
         })
       );

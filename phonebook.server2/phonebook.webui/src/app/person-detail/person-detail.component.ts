@@ -54,11 +54,13 @@ export class PersonDetailComponent implements OnInit {
       .getContact(id)
       .subscribe(c => {
         this.groupService.getGroups().subscribe(groups => {
+          let emptyGroup = {id: -1, name:'-'};
+          groups.push(emptyGroup);
           this.groups = groups;
-          if(c.group){
-            this.selectedGroup = c.group;
+          if(c.groupId){
+            this.selectedGroup = groups.find(g => g.id == c.groupId);
           }else{
-            this.selectedGroup = {id: -1, name:'-'};
+            this.selectedGroup = emptyGroup;
           }
           this.setContact(c);
         })
@@ -79,7 +81,7 @@ export class PersonDetailComponent implements OnInit {
     const model = this.form.value;
     const contact: Person = {
       id: this.contactId,
-      group: model.group,
+      groupId: model.group.id == -1 ? null : model.group.id,
       name: model.name,
       age: model.age,
       number: model.number

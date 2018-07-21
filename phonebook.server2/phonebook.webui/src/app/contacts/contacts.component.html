@@ -29,7 +29,7 @@
         {{contact.number | phone}}
       </td>
       <td>
-        <option *ngIf="contact.group">{{contact.group.name}}</option>
+        <option *ngIf="contact.groupId != null">{{contact.groupName}}</option>
       </td>
       <td>
         <a routerLink="/detail/{{contact.id}}">Edit</a> |

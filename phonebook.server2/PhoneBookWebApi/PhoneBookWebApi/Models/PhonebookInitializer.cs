@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace PhoneBookWebApi.Models
 {
-    public class PhonebookInitializer: DropCreateDatabaseIfModelChanges<PhonebookDb>
+    public class PhonebookInitializer: DropCreateDatabaseAlways<PhonebookDb>
     {
         public readonly string[] names =
         {
@@ -27,18 +27,18 @@ namespace PhoneBookWebApi.Models
 
         protected override void Seed(PhonebookDb context)
         {
-            context.Groups.AddRange(groups.ToList().Select((g, inc) => new Group { Id = inc, Name = g }));
+            var groupList = groups.ToList().Select((g, inc) => new Group { Id = inc, Name = g });
+            context.Groups.AddRange(groupList);
 
-            foreach (var name in names)
+            var contactsList = names.ToList().Select((name, i) => new Contact
             {
-                context.Contacts.Add(new Contact
-                {
-                    Name = name,
-                    Age = new Random().Next(10, 80).ToString(),
-                    Phone = Math.Abs((int)name.GetHashCode()).ToString().Substring(0, 6).PadRight(6, '0'),
-                    Group = context.Groups.FirstOrDefault(g => g.Id == new Random().Next(0, 3))
-                });
-            }
+                Name = name,
+                Age = new Random().Next(10, 80).ToString(),
+                Phone = Math.Abs((int)name.GetHashCode()).ToString().Substring(0, 6).PadRight(6, '0'),
+                GroupId = groupList.FirstOrDefault(g => g.Id == new Random().Next(1, 4))?.Id
+            });
+
+            context.Contacts.AddRange(contactsList);
 
             base.Seed(context);
         }

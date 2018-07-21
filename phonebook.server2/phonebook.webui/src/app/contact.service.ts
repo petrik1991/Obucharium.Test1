@@ -35,9 +35,9 @@ export class ContactService {
         catchError(this.errorHandler.handlerUpdateError()));
   }
 
-  deleteContact(contact: Person): Observable<any>{
-    return this.http.delete(`${this.contactsUrl}/${contact.id}`)
-    .pipe(tap(() => this.logger.debug(`contact with id='${contact.id}' is deleted`)));
+  deleteContact(id: number): Observable<any>{
+    return this.http.delete(`${this.contactsUrl}/${id}`)
+    .pipe(tap(() => this.logger.debug(`contact with id='${id}' is deleted`)));
   }
 
   addContact(contact): Observable<any>{
