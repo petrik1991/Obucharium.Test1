@@ -19,31 +19,38 @@ export class ContactService {
 
   getContacts(): Observable<Person[]>{
     return this.http.get<Person[]>(this.contactsUrl)
-    .pipe(tap(() => this.logger.debug("contacts are loaded")));
+    .pipe(
+      tap(() => this.logger.debug("contacts are loaded")),
+      catchError(this.errorHandler.handleError<Person[]>('getContacts', [])));
   }
 
   getContact(id: number): Observable<Person>{
     return this.http.get<Person>(`${this.contactsUrl}/${id}`)
-    .pipe(tap(contact => this.logger.debug(`contact with id='${contact.id}' is loaded`)));
+    .pipe(
+      tap(contact => this.logger.debug(`contact with id='${contact.id}' is loaded`)),
+      catchError(this.errorHandler.handlerUpdateError()));
   }
 
   updateContact(contact: Person): Observable<any> {
     return this.http.put(`${this.contactsUrl}/${contact.id}`, contact)
     .pipe(
-      tap(
-        () => this.logger.debug(`contact with id='${contact.id}' is updated`)),
-        catchError(this.errorHandler.handlerUpdateError()));
+      tap(() => this.logger.debug(`contact with id='${contact.id}' is updated`)),
+      catchError(this.errorHandler.handlerUpdateError()));
   }
 
   deleteContact(id: number): Observable<any>{
     return this.http.delete(`${this.contactsUrl}/${id}`)
-    .pipe(tap(() => this.logger.debug(`contact with id='${id}' is deleted`)));
+    .pipe(
+      tap(() => this.logger.debug(`contact with id='${id}' is deleted`)),
+      catchError(this.errorHandler.handlerUpdateError()));
   }
 
   addContact(contact): Observable<any>{
     contact.id;
     return this.http.post(`${this.contactsUrl}`, contact)
-    .pipe(tap(() => this.logger.debug(`new contact added`)));
+    .pipe(
+      tap(() => this.logger.debug(`new contact added`),
+      catchError(this.errorHandler.handlerUpdateError())));
   }
 
   searchcontacts(term: string){

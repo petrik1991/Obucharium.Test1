@@ -235,3 +235,4 @@ D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\obj\Debug
 D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\obj\Debug\PhoneBookWebApi.csproj.CopyComplete
 D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\obj\Debug\PhoneBookWebApi.dll
 D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\obj\Debug\PhoneBookWebApi.pdb
+D:\ObuchariumProject\phonebook.server2\PhoneBookWebApi\PhoneBookWebApi\obj\Debug\PhoneBookWebApi.csprojAssemblyReference.cache

@@ -19,7 +19,9 @@ export class GroupService {
 
   getGroups(): Observable<Group[]>{
     return this.http.get<Group[]>(this.groupsUrl)
-    .pipe(tap(() => this.logger.debug("groups are loaded")));
+    .pipe(
+      tap(() => this.logger.debug("groups are loaded")),
+      catchError(this.errorHandler.handleError<Group[]>('getGroups', [])));
   }
 
   updateGroup(group: Group): Observable<any> {
@@ -30,17 +32,23 @@ export class GroupService {
 
   deleteGroup(id: number): Observable<any>{
     return this.http.delete(`${this.groupsUrl}/${id}`)
-    .pipe(tap(() => this.logger.debug(`group with id='${id}' is deleted`)));
+    .pipe(
+      tap(() => this.logger.debug(`group with id='${id}' is deleted`)),
+      catchError(this.errorHandler.handlerUpdateError()));
   }
 
   addGroup(group): Observable<any>{
     group.id;
     return this.http.post(`${this.groupsUrl}`, group)
-    .pipe(tap(() => this.logger.debug(`new group added`)));
+    .pipe(
+      tap(() => this.logger.debug(`new group added`)),
+      catchError(this.errorHandler.handlerUpdateError()));
   }
 
   getGroup(id: number): Observable<Group>{
     return this.http.get<Group>(`${this.groupsUrl}/${id}`)
-    .pipe(tap(group => this.logger.debug(`group with id='${group.id}' is loaded`)));
+    .pipe(
+      tap(group => this.logger.debug(`group with id='${group.id}' is loaded`)),
+      catchError(this.errorHandler.handlerUpdateError()));
   }
 }
