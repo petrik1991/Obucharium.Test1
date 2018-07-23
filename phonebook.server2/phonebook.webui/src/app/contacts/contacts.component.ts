@@ -3,10 +3,8 @@ import { Person } from '../person';
 import { GroupService } from '../group.service';
 import { ContactService } from '../contact.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, forkJoin } from 'rxjs';
-import { switchMap, tap, finalize, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { PersonWrapper } from '../personWrapper';
-import { Group } from '../group';
 
 @Component({
   selector: 'app-contacts',
@@ -15,7 +13,7 @@ import { Group } from '../group';
 })
 export class ContactsComponent implements OnInit {
 
-  people: Observable<PersonWrapper[]>;
+  people: PersonWrapper[];
   selectedPerson: PersonWrapper;
   isLoading: boolean = false;
 
@@ -24,16 +22,11 @@ export class ContactsComponent implements OnInit {
     private groupService: GroupService) { }
 
   ngOnInit() {
-    this.people = this.activatedRoute
-    .params
-    .pipe(
-      tap(() => this.isLoading = true),
-      switchMap(params => this.getContacts(params['term'])
-      .pipe(finalize(() => this.isLoading = false)))
-    );
+    this.isLoading = true;
+    this.getContacts(this.activatedRoute.params['term']);    
   }
 
-  getContacts(term: string): Observable<PersonWrapper[]>{
+  getContacts(term: string): void{
     let gettedContacts: Observable<Person[]>;
 
     if(term){
@@ -42,9 +35,10 @@ export class ContactsComponent implements OnInit {
       gettedContacts = this.contactService.getContacts();
     }
 
-    return forkJoin(gettedContacts,
-    this.groupService.getGroups()).pipe(
-      map(([contacts, groups])=>{
+    this.groupService.getGroups()
+    .subscribe(groups => {
+      gettedContacts
+      .subscribe(contacts => {
         let wrappedContacts: PersonWrapper[] = [];
         contacts.forEach(c => {
           if(c.groupId != null){
@@ -54,22 +48,19 @@ export class ContactsComponent implements OnInit {
             wrappedContacts.push(PersonWrapper.createPersonWrap(c, ""));
           }
         });
-        return wrappedContacts; 
+        this.people = wrappedContacts;
+        this.isLoading = false; 
       })
-    );
+    })
   }
 
   onDelete(contact: PersonWrapper){
     this.contactService.deleteContact(contact.id).
     subscribe(() => {
-      this.people = this.people.pipe(
-        tap(people => {
-          const index = people.indexOf(contact);
-          if (index > -1) {
-            people.splice(index, 1);
-          }
-        })
-      );
+        const index = this.people.indexOf(contact);
+        if (index > -1) {
+          this.people.splice(index, 1);
+        }
     });
   }
 
