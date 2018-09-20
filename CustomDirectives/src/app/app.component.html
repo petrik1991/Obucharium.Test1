@@ -1,0 +1,28 @@
+<div class="form-group m-a-2 col-sm-6">
+  <table class="table table-striped table-bordered">
+    <thead><tr>
+      <th></th><th>Name</th><th>Category</th><th>Price</th>
+    </tr></thead>
+    <tbody>
+      <tr  *cdFor="let item of getProducts(); let index=index; let odd=odd; let func=func"
+      [class.bg-success]="odd">
+          <td>{{index+1}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.category}}</td>
+          <td [class]="odd ? func : null">{{item.price}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="form-group m-a-2 col-sm-3">
+  <label>Find product by ID</label>
+  <input class="form-control m-b-2" (input)="getProduct($event.data)">
+  
+  <label>Name:</label>
+  <input class="form-control m-b-1" [(cd-attr)]="findProduct.name">
+  <label>Category:</label>
+  <input class="form-control m-b-1" [(cd-attr)]="findProduct.category">
+  <label>Price:</label>
+  <input class="form-control m-b-1" [(cd-attr)]="findProduct.price">
+</div>
