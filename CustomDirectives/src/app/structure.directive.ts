@@ -1,4 +1,4 @@
-import {Directive, Input, TemplateRef, ViewContainerRef} from "@angular/core";
+import {Directive, Input, TemplateRef, ViewContainerRef, IterableDiffer, IterableDiffers} from "@angular/core";
 
 @Directive({
     selector:"[cdForOf]"
@@ -6,24 +6,31 @@ import {Directive, Input, TemplateRef, ViewContainerRef} from "@angular/core";
 
 export class CdStructureDirective{
 
-    constructor(private container: ViewContainerRef, private template: TemplateRef<Object>){}
+    differ: IterableDiffer<any>;
+
+    constructor(private container: ViewContainerRef, private template: TemplateRef<Object>,
+                private differs: IterableDiffers){}
 
     @Input("cdForOf")
     products: any;
 
     ngOnInit(){
-        this.container.clear();
+        this.differ = this.differs.find(this.products).create();
+    }
 
-        this.products.forEach((e, i) => {
-            let context = {
-                $implicit: e,
-                index: i,
-                odd: i % 2 == 1,
-                func: this.getClass()
-            }
-
-            this.container.createEmbeddedView(this.template, context);
-        });
+    ngDoCheck() {
+        let changes = this.differ.diff(this.products);
+        if (changes != null) {
+            changes.forEachAddedItem(added => {
+                let context = {
+                    $implicit: added.item,
+                    index: added.currentIndex,
+                    odd: added.currentIndex % 2 == 1,
+                    func: this.getClass()
+                }
+                this.container.createEmbeddedView(this.template, context);
+            });
+        }
     }
 
     getClass(){
