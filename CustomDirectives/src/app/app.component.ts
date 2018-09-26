@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { Product } from "../product.model";
-import { Model } from "../repository.model";
+import { Component, ViewChild } from '@angular/core';
+import { Model } from "./repository.model"; 
+import { ProductTableComponent } from "./product-table/product-table.component"
 
 @Component({
   selector: 'app-root',
@@ -10,18 +10,22 @@ import { Model } from "../repository.model";
 export class AppComponent {
 
   model: Model = new Model();
-  findProduct: Product = new Product();
 
-  getProducts(): Product[]{
-    return this.model.getProducts();
+  @ViewChild(ProductTableComponent)
+  productTableChild: ProductTableComponent;
+
+  ngAfterViewInit(){
+    this.productTableChild.rows.changes.subscribe(() => {
+      this.changeRowColor();
+    });
+    this.changeRowColor();
   }
 
-  getProduct(id: number): Product {
-    this.findProduct = this.model.getProduct(id);
-    if(this.findProduct == null)
-    {
-        this.findProduct = new Product();
-    }
-    return this.findProduct;
+  changeRowColor(){
+    setTimeout(() => {
+      this.productTableChild.rows.forEach((row, i) => {
+        row.nativeElement.style.backgroundColor = i % 2 != 1 ? "aqua" : "lightgreen";
+      })
+    }, 0);
   }
 }

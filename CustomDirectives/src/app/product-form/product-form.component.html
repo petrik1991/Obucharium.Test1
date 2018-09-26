@@ -1,0 +1,18 @@
+<form novalidate [formGroup]="form" (ngSubmit)="submitForm(form)">
+  <div class="form-group m-a-2 col-sm-3">
+
+    <label>Find product by ID:</label>
+    <input class="form-control m-b-2" (input)="getProduct($event.data)">
+    
+    <label>Name:</label>
+    <input class="form-control m-b-1" formControlName="name" [(cd-attr)]="product.name">
+    <label>Category:</label>
+    <input class="form-control m-b-1" formControlName="category" [(cd-attr)]="product.category">
+    <label>Price:</label>
+    <input class="form-control m-b-1" formControlName="price" [(cd-attr)]="product.price">
+
+    <label> Add new product:
+        <button class="btn btn-primary" [disabled]="form.invalid" type="submit">Create</button>
+      </label>
+  </div>
+</form>
