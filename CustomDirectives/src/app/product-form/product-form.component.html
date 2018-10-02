@@ -6,10 +6,25 @@
     
     <label>Name:</label>
     <input class="form-control m-b-1" formControlName="name" [(cd-attr)]="product.name">
+    <ul *ngIf="form.controls['name'].dirty && form.controls['name'].invalid">
+      <li class="text-danger list-unstyled" *ngFor="let error of getErrors(form.controls['name'], 'Name')">
+        <label>{{error}}</label>
+      </li>
+    </ul>
     <label>Category:</label>
     <input class="form-control m-b-1" formControlName="category" [(cd-attr)]="product.category">
+    <ul *ngIf="form.controls['category'].dirty && form.controls['category'].invalid">
+      <li class="text-danger list-unstyled" *ngFor="let error of getErrors(form.controls['category'], 'Category')">
+        <label>{{error}}</label>
+      </li>
+    </ul>
     <label>Price:</label>
     <input class="form-control m-b-1" formControlName="price" [(cd-attr)]="product.price">
+    <ul *ngIf="form.controls['price'].dirty && form.controls['price'].invalid">
+      <li class="text-danger list-unstyled" *ngFor="let error of getErrors(form.controls['price'], 'Price')">
+        <label>{{error}}</label>
+      </li>
+    </ul> 
 
     <label> Add new product:
         <button class="btn btn-primary" [disabled]="form.invalid" type="submit">Create</button>

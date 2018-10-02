@@ -41,4 +41,26 @@ export class ProductFormComponent {
       this.form.reset();
     }
   }
+
+  getErrors(control: any, controlName: string): string[]{
+    let errors: string[] = [];
+
+    if(control.errors){
+      for(let error in control.errors){
+        switch(error){
+          case "required":
+            errors.push(`${controlName} is required`);
+          break;
+          case "pattern":
+            errors.push(`${controlName} need contains only number and point characters`);
+          break;
+          case "minlength":
+            errors.push(`${controlName} need contain minimum ${control.errors['minlength'].requiredLength} characters`);
+          break;
+        }
+      }
+    }
+
+    return errors;
+  }
 }
