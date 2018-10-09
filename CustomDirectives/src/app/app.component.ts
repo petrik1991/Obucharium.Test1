@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ContentChild, ElementRef } from '@angular/core';
 import { Model } from "./repository.model"; 
 import { ProductTableComponent } from "./product-table/product-table.component"
 
