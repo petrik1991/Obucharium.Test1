@@ -1,0 +1,8 @@
+<div *ngFor="let category of categories">
+  <ul>
+    <li>
+        <a (click)="onCategoryClick(category)">{{category.name}}</a>
+        <app-navigation *ngIf="category.subcategory != null && checkCategory(category)" [categories]="category.subcategory"></app-navigation>
+    </li>
+  </ul>
+</div>
