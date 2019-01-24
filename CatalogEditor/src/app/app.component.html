@@ -1,1 +1,19 @@
-<app-navigation [categories]=model.categories> </app-navigation>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+        <h2 style="margin: 0 0 0 15px">Категории</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="body-container">
+    <div class="navigation">
+        <app-navigation class="navigation-block form-group" [categories]=model.getCategories()> </app-navigation>
+    </div>
+    <div class="products-list">
+        <app-products-list></app-products-list>
+    </div>
+</div>
+
+<div class="container body-content">
+    <router-outlet></router-outlet>
+</div>

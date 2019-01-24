@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Category } from '../model/category.model';
+import { Injectable } from '@angular/core';
+import { observable, action } from 'mobx';
+import { ProductsServiceService } from '../products-service.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,23 +10,27 @@ import { Category } from '../model/category.model';
   styleUrls: ['./navigation.component.css']
 })
 
+@Injectable()
 export class NavigationComponent {
 
   @Input()
-  categories: Category[] = [];
-  currentCategory = null;
+  @observable categories: Category[] = [];
 
-  constructor() { };
+  constructor(private productService: ProductsServiceService) { };
 
-  onCategoryClick(category: Category){
-    if(this.currentCategory != null && this.currentCategory == category){
-      this.currentCategory = null;
-      return;
-    }
-    this.currentCategory = category;
+  @action onCategoryClick(event: MouseEvent, clickedCategory: Category){
+    event.stopPropagation();
+
+    let category: Category = this.productService.compareCategories(clickedCategory) && this.productService.needShowCategory(clickedCategory) ? null : clickedCategory;
+    
+    this.productService.selectCategory(category);
   }
 
-  checkCategory(category: Category){
-    return this.currentCategory != null && category == this.currentCategory;
+  needShowNode(category: Category): boolean{
+    return this.productService.needShowCategory(category);
+  }
+
+  checkCategory(category: Category): string{
+    return this.needShowNode(category) || !this.productService.hasSubcategory(category)? 'collapsed' : '';
   }
 }

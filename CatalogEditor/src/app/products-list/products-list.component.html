@@ -1,0 +1,43 @@
+<div> 
+    <div *ngIf="!checkSelectedProduct()">
+        <p>Выберите товар</p>
+    </div>    
+
+    <div *ngIf="checkSelectedProduct()">
+        
+        <div style="float:right">
+            <button *ngFor="let pr of getProductsOnPage(); index as index" class="mb-2 mr-2" [value]=index (click)="onSelectPage(index)">
+                {{index + 1}}
+            </button>
+        </div>
+        
+
+        <div class="mr-4" style="float:right;">
+            {{selectedPage * maxProductsOnPage - maxProductsOnPage + 1}} - {{selectedPage * maxProductsOnPage}} of {{getProducts().length}}
+        </div>
+        
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th style="width: 1%;">#</th>
+                    <th style="width: 40%; max-width: 80%;">Name</th>
+                    <th style="width: 5%">Price</th>
+                    <th style="width: 5%">Qty</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of getProductsOnPage()">
+                    <td style="text-align: center;">
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        <img style="max-width: 100px; max-height: 100px" src="{{product.photo}}">
+                        {{  product.name  }}
+                    </td>
+                    <td>{{product.price | currency:"USD":"symbol":"1.2-2"}}</td>
+                    <td>{{product.photo}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

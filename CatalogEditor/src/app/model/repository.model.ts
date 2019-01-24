@@ -7,8 +7,8 @@ import { observable, action } from 'mobx';
 @Injectable()
 export class Model {
     private dataSource: DataSource;
-    @observable public products: Product[];
-    @observable public categories: Category[];
+    @observable private products: Product[];
+    @observable private categories: Category[];
 
     constructor() {
         this.dataSource = new DataSource();

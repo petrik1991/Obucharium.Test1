@@ -1,8 +1,9 @@
-<div *ngFor="let category of categories">
-  <ul>
-    <li>
-        <a (click)="onCategoryClick(category)">{{category.name}}</a>
-        <app-navigation *ngIf="category.subcategory != null && checkCategory(category)" [categories]="category.subcategory"></app-navigation>
+<div>
+  <ul style="padding-left:15px">
+    <li *ngFor="let category of categories" [class]="checkCategory(category)" (click)="onCategoryClick($event, category)">
+        <a>{{category.name}}</a>
+        <hr style="margin: 2px 0 2px 0" />
+        <app-navigation *ngIf="needShowNode(category)" [categories]="category.subcategory"></app-navigation>
     </li>
   </ul>
 </div>
