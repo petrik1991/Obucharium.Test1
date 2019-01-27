@@ -2,7 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Category } from '../model/category.model';
 import { Injectable } from '@angular/core';
 import { observable, action } from 'mobx';
-import { ProductsServiceService } from '../products-service.service';
+import { CatalogService } from '../catalog.service';
+import { CatalogStates } from '../catalog.states';
 
 @Component({
   selector: 'app-navigation',
@@ -16,21 +17,27 @@ export class NavigationComponent {
   @Input()
   @observable categories: Category[] = [];
 
-  constructor(private productService: ProductsServiceService) { };
+  constructor(
+    private productService: CatalogService,
+    private catalogState: CatalogStates) {
+        this.categories = this.productService.getCategories();
+    };
 
   @action onCategoryClick(event: MouseEvent, clickedCategory: Category){
     event.stopPropagation();
 
-    let category: Category = this.productService.compareCategories(clickedCategory) && this.productService.needShowCategory(clickedCategory) ? null : clickedCategory;
+    clickedCategory.isCollapsed = !clickedCategory.isCollapsed;
+    clickedCategory = !clickedCategory.subcategory && clickedCategory.isCollapsed ? clickedCategory : null;
     
-    this.productService.selectCategory(category);
+    this.productService.selectCategory(clickedCategory);
+    this.catalogState.setState(!!clickedCategory ? 'SHOW_ITEMS' : 'NAVIGATION');
   }
 
   needShowNode(category: Category): boolean{
-    return this.productService.needShowCategory(category);
+    return category.isCollapsed;
   }
 
   checkCategory(category: Category): string{
-    return this.needShowNode(category) || !this.productService.hasSubcategory(category)? 'collapsed' : '';
+    return this.needShowNode(category) ? 'collapsed' : '';
   }
 }

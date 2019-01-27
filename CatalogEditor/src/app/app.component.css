@@ -4,8 +4,9 @@ body{
 }
 
 .body-content{
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 1px;
+    padding-right: 1px;
+    margin-left: 10px;
 }
 
 .dl-horizontal dt{
@@ -21,25 +22,4 @@ input,
 select,
 textarea{
     max-width: 280px;
-}
-
-.navigation{
-    height: 90vh;
-    width: 20vw;
-    border-width: 0 1px 0 0; 
-    border-style: solid;
-    display: inline-block;
-}
-
-.navigation-block{
-    max-width: 20%;
-    height: 100%
-}
-
-.products-list{
-    position: absolute;
-    display: inline-block;
-    height: 85vh;
-    width: 75vw;
-    margin: 0 20px 20px 20px;
 }

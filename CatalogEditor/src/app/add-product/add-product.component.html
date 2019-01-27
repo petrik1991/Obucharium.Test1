@@ -1,0 +1,41 @@
+<form novalidate [formGroup]="form" (ngSubmit)="onSubmit(photo)">
+
+  <div class="form-group">
+      <button type="submit"  class="btn btn-link">Сохранить</button>
+      <a (click)="resetForm(photo)" class="btn btn-link">Отмена</a>
+  </div>
+
+  <div style="margin-left:25px">
+      <div class="form-group">
+          <label> Фото: </label>
+          <img style="max-width: 100px; max-height: 100px" #photo src={{getPhotoPath()}}>
+          <a class="btn btn-link" (click)="uploadFile(upload)">Загрузить</a>
+          <input #upload hidden (change)="onChange($event, photo)" accept="jpeg,png" type="file" name="photo" formControlName="photo">
+        </div>
+
+        <div class="form-group">
+            <label> Название: </label>
+            <input class="form-control" name="name" formControlName="name">
+            <ul class="text-danger list-unstyled" *ngIf="form.controls['name'].dirty && form.controls['name'].invalid">
+                <li *ngFor="let error of getErrors(form.controls['name'], 'Name')">{{error}}</li>
+              </ul>
+          </div>
+      
+        <div class="form-group">
+          <label> Цена: </label>
+          <input class="form-control" name="price" formControlName="price">
+          <ul class="text-danger list-unstyled" *ngIf="form.controls['price'].dirty && form.controls['price'].invalid">
+              <li *ngFor="let error of getErrors(form.controls['price'], 'Price')">{{error}}</li>
+            </ul>
+        </div>
+      
+        <div class="form-group">
+          <label> Количество: </label>
+          <input class="form-control" name="qty" formControlName="qty">
+          <ul class="text-danger list-unstyled" *ngIf="form.controls['qty'].dirty && form.controls['qty'].invalid">
+              <li *ngFor="let error of getErrors(form.controls['qty'], 'Qty')">{{error}}</li>
+            </ul>
+        </div>
+  </div>
+
+</form>

@@ -1,19 +1,13 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light mb-2" style="background-color:rgba(99, 131, 168, 0.534)">
     <div class="navbar-header">
-        <h2 style="margin: 0 0 0 15px">Категории</h2>
-        <hr />
+        <h4 class="ml-2 nav-link">{{showHeaderName()}}</h4>
     </div>
-</div>
-
-<div class="body-container">
-    <div class="navigation">
-        <app-navigation class="navigation-block form-group" [categories]=model.getCategories()> </app-navigation>
-    </div>
-    <div class="products-list">
-        <app-products-list></app-products-list>
-    </div>
-</div>
+    
+    <form class="form-inline my-2 my-lg-0">
+        <button (click)="onClose()" class="btn btn-outline-success my-2 my-sm-0" type="submit">X</button>
+    </form>
+</nav>
 
 <div class="container body-content">
     <router-outlet></router-outlet>
-</div>
+</div> 
