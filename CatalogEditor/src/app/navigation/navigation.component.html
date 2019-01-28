@@ -1,0 +1,9 @@
+<div>
+  <ul>
+    <li *ngFor="let category of categories" [class]="checkCategory(category)" (click)="onCategoryClick($event, category)">
+        <a>{{category.name}}</a>
+        <hr class="mt-2 mb-2" />
+        <app-navigation *ngIf="needShowNode(category)" [categories]="category.subcategory"></app-navigation>
+    </li>
+  </ul>
+</div>

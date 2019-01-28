@@ -1,0 +1,13 @@
+.hidden{
+    display: none;
+}
+
+td{
+    vertical-align: middle;
+}
+
+.list-container{
+    width:95vw;
+    margin-left:10px;
+    margin-right: 10px;
+}
